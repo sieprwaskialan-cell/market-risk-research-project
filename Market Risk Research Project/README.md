@@ -140,14 +140,13 @@ Power Query. Desktop refresh and visual checks remain necessary.
 | `market_risk_snapshot.py` | Main command, asset risk metrics and original charts |
 | `data_pipeline.py` | Downloads, raw snapshots, validation, database and SQL exports |
 | `portfolio_analysis.py` | Rebalancing, transaction costs, period comparison and dashboard data |
-| `build_deliverables.py` | Findings brief, PDF and LinkedIn draft |
 | `build_powerbi.py` | Native Power BI model and report definitions |
 | `sql/` | Schema and four analysis queries |
 | `dashboard/` | Offline dashboard and locally bundled libraries |
 | `powerbi/` | Native project, measures, opening instructions and validation result |
 | `results/` | Charts, small CSV outputs, dashboard preview and reports |
 | `tests/` | Python regression tests and browser checks |
-| `SHARING.md` | What to upload and how to present the work |
+
 
 The raw responses, local SQLite database, intermediate daily/rolling CSVs, browser QA screenshots,
 Power BI caches and downloaded schema caches are excluded from the GitHub ZIP.
