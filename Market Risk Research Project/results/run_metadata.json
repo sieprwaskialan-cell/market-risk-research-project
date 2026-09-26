@@ -1,0 +1,86 @@
+{
+  "source": "Yahoo Finance chart endpoint; daily adjusted close",
+  "retrieved_at_utc": "2026-09-26T13:52:58.926914+00:00",
+  "requested_start": "2018-01-01",
+  "requested_end": "2026-09-18",
+  "files": {
+    "SPY": {
+      "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/SPY?period1=1514764800&period2=1789776000&interval=1d&events=history&includeAdjustedClose=true",
+      "sha256": "f0a10c505edcc5988c5961c7823d951dcdc64b36ee040b1f655c11156572d086"
+    },
+    "QQQ": {
+      "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/QQQ?period1=1514764800&period2=1789776000&interval=1d&events=history&includeAdjustedClose=true",
+      "sha256": "c22834ac570be9c66432bd79fc7e5c57210e75f108d7015d4fddcc711cf946ec"
+    },
+    "IWM": {
+      "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/IWM?period1=1514764800&period2=1789776000&interval=1d&events=history&includeAdjustedClose=true",
+      "sha256": "92bc1aaddd016c5d06b5537bf3fe1592dc587004fd2fcff2bbbe69bb3d23a8ed"
+    },
+    "TLT": {
+      "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/TLT?period1=1514764800&period2=1789776000&interval=1d&events=history&includeAdjustedClose=true",
+      "sha256": "3b48b72b0c041a296c6fc9a824c0706c9c02ff349e55edfa79ccb2882583bf76"
+    },
+    "GLD": {
+      "source_url": "https://query1.finance.yahoo.com/v8/finance/chart/GLD?period1=1514764800&period2=1789776000&interval=1d&events=history&includeAdjustedClose=true",
+      "sha256": "3d4db16f2ac97a714630c7d369dccec8d6482a64d7025cc1dddce4e8cab9b7c9"
+    }
+  },
+  "analysis_run_at_utc": "2026-09-26T14:05:40.982124+00:00",
+  "actual_first_price_date": "2018-01-02",
+  "actual_last_price_date": "2026-09-18",
+  "prices_per_asset": 2190,
+  "returns_per_asset": 2189,
+  "sql_python_returns_match": true,
+  "runtime": {
+    "python": "3.12.14",
+    "sqlite": "3.53.1",
+    "pandas": "3.0.1",
+    "numpy": "2.3.5",
+    "matplotlib": "3.11.2"
+  },
+  "portfolio_assumptions": {
+    "default_scenario": "monthly_10",
+    "cost_bps_options": [
+      0,
+      10,
+      25
+    ],
+    "rebalance_options": [
+      "monthly",
+      "buy_hold"
+    ],
+    "portfolios": {
+      "spy": {
+        "name": "SPY only",
+        "weights": {
+          "SPY": 1.0
+        },
+        "color": "#39464c"
+      },
+      "equity": {
+        "name": "Equity mix",
+        "weights": {
+          "SPY": 0.3333333333333333,
+          "QQQ": 0.3333333333333333,
+          "IWM": 0.3333333333333333
+        },
+        "color": "#157b70"
+      },
+      "diversified": {
+        "name": "Stocks, bonds & gold",
+        "weights": {
+          "SPY": 0.2,
+          "QQQ": 0.2,
+          "IWM": 0.2,
+          "TLT": 0.2,
+          "GLD": 0.2
+        },
+        "color": "#b44e41"
+      }
+    },
+    "initial_purchase_cost": true,
+    "terminal_liquidation_cost": false,
+    "risk_free_rate": 0.0,
+    "trading_days_per_year": 252
+  }
+}

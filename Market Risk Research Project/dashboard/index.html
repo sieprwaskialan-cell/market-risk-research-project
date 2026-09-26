@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>Market Risk Research Project</title>
+  <link rel="stylesheet" href="style.css">
+  <script defer src="vendor/chart.umd.js"></script>
+  <script defer src="vendor/lucide.js"></script>
+  <script defer src="data.js"></script>
+  <script defer src="app.js"></script>
+</head>
+<body>
+  <header class="masthead">
+    <div class="identity"><i data-lucide="chart-no-axes-combined" aria-hidden="true"></i><div><h1>Market Risk Research Project</h1><p>Alan Sieprawski &amp; Conor McMillan <span class="divider">/</span> ETF risk &amp; diversification</p></div></div>
+    <div class="header-actions"><span id="snapshot-date"></span><button id="export" class="icon-button" title="Export filtered portfolio metrics" aria-label="Export filtered portfolio metrics"><i data-lucide="download"></i></button><button id="print" class="icon-button" title="Print current view" aria-label="Print current view"><i data-lucide="printer"></i></button></div>
+  </header>
+  <nav class="tabs" aria-label="Research views">
+    <button class="tab active" data-view="portfolios" aria-current="page"><i data-lucide="chart-line"></i>Portfolios</button>
+    <button class="tab" data-view="assets"><i data-lucide="grid-2x2"></i>Assets</button>
+    <button class="tab" data-view="evidence"><i data-lucide="clipboard-check"></i>Data &amp; method</button>
+  </nav>
+  <main>
+    <section class="filterbar" aria-label="Analysis filters">
+      <fieldset class="segmented"><legend>Period</legend><label><input type="radio" name="period" value="all" checked><span>All history</span></label><label><input type="radio" name="period" value="2020"><span>2020</span></label><label><input type="radio" name="period" value="2022"><span>2022</span></label><label><input type="radio" name="period" value="2023"><span>Since 2023</span></label></fieldset>
+      <label class="field">From<input id="start" type="date" required></label><label class="field">To<input id="end" type="date" required></label>
+      <label class="field portfolio-control">Rebalancing<select id="rebalance"><option value="monthly">Monthly</option><option value="buy_hold">Buy and hold</option></select></label>
+      <label class="field portfolio-control">Cost per dollar traded<select id="cost"><option value="0">0 bps</option><option value="10" selected>10 bps (0.10%)</option><option value="25">25 bps (0.25%)</option></select></label>
+    </section>
+    <p id="error" role="alert" hidden></p>
+    <section id="portfolios" class="view">
+      <div class="section-heading"><div><h2>Risk and return, side by side</h2><p id="period-label"></p></div><label class="field">Focus portfolio<select id="focus"><option value="diversified">Stocks, bonds &amp; gold</option><option value="equity">Equity mix</option><option value="spy">SPY only</option></select></label></div>
+      <div class="metrics" aria-live="polite"><div><span>Total return</span><strong id="kpi-return"></strong><small id="kpi-annual"></small></div><div><span>Annualized volatility</span><strong id="kpi-vol"></strong><small>Daily sample deviation × √252</small></div><div><span>Maximum drawdown</span><strong id="kpi-drawdown"></strong><small>Peak-to-trough loss in selected window</small></div><div><span>Sharpe ratio</span><strong id="kpi-sharpe"></strong><small>0% assumed risk-free rate</small></div></div>
+      <section class="chart-section"><div class="chart-heading"><h3 id="chart-title">Growth of $10,000</h3><fieldset class="segmented compact"><legend class="sr-only">Portfolio chart</legend><label><input type="radio" name="chartMode" value="wealth" checked><span>Growth</span></label><label><input type="radio" name="chartMode" value="drawdown"><span>Drawdown</span></label></fieldset></div><div class="chart-wrap"><canvas id="portfolio-chart" aria-label="Portfolio growth comparison" role="img"></canvas></div><div id="portfolio-legend" class="legend"></div></section>
+      <div class="table-wrap"><table id="comparison"><caption>Portfolio comparison · selected window</caption><thead><tr><th scope="col">Portfolio / target weights</th><th scope="col">Total return</th><th scope="col">Annualized return</th><th scope="col">Volatility</th><th scope="col">Max drawdown</th><th scope="col">Sharpe</th></tr></thead><tbody></tbody></table></div>
+      <p class="footnote">Net returns after the selected trading cost. Window charts rebase to $10,000; portfolio holdings retain their earlier history. No terminal sale is charged.</p>
+      <section class="period-section"><div class="section-heading"><div><h3>Across market periods</h3><p>Fixed comparison: monthly rebalancing, 10 bps. Windows are descriptive, not out-of-sample tests.</p></div></div><div class="table-wrap"><table id="periods-table"><thead><tr><th>Period</th><th>SPY only</th><th>Equity mix</th><th>Stocks, bonds &amp; gold</th></tr></thead><tbody></tbody></table></div></section>
+    </section>
+    <section id="assets" class="view" hidden>
+      <div class="section-heading"><div><h2>What each asset contributes</h2><p>Adjusted prices and returns over the selected dates</p></div><div id="asset-toggles" class="asset-toggles" role="group" aria-label="Included assets"></div></div>
+      <section class="chart-section"><h3>Growth of $10,000 · before trading costs</h3><div class="chart-wrap"><canvas id="asset-chart" aria-label="ETF adjusted price performance" role="img"></canvas></div><div id="asset-legend" class="legend"></div></section>
+      <section class="asset-detail"><div><h3>Daily return correlation</h3><div id="correlation" class="table-wrap"></div></div><div><h3>Risk comparison</h3><div class="table-wrap"><table id="asset-metrics"><thead><tr><th>ETF</th><th>Ann. return</th><th>Volatility</th><th>Drawdown</th></tr></thead><tbody></tbody></table></div></div></section>
+      <section class="monthly-section"><div class="chart-heading"><h3>Monthly returns · SQL results</h3><label class="field">Calendar year<select id="heatmap-year"></select></label></div><div id="monthly-heatmap" class="table-wrap"></div><p class="footnote">This calendar table uses its own year selection and is not cropped by the date filters. * Sample boundary month; may be incomplete. A dash means no observation.</p></section>
+    </section>
+    <section id="evidence" class="view" hidden>
+      <div class="section-heading"><div><h2>Data, assumptions and evidence</h2><p id="source-label"></p></div><span class="status"><i data-lucide="check-circle-2"></i>Structural checks passed</span></div>
+      <div class="table-wrap"><table id="quality"><caption>Source data audit · full sample, unaffected by date filters</caption><thead><tr><th>ETF</th><th>Raw prices</th><th>Rows removed</th><th>Missing sessions</th><th>Large moves flagged</th></tr></thead><tbody></tbody></table></div>
+      <section class="method-grid"><div><h3>Portfolio construction</h3><p>SPY only holds 100% SPY. Equity mix targets one-third each in SPY, QQQ and IWM. Stocks, bonds &amp; gold targets 20% in each of the five ETFs.</p><p>Weights drift with returns. Monthly portfolios reset at the start of a new month using only earlier holdings. Buy-and-hold portfolios do not reset. No portfolio weights are fitted to the results.</p><h3>Trading costs</h3><p>A basis point is 0.01%. Costs are applied to the total amount bought and sold, including the initial purchase. Net daily return is (1 − cost) × (1 + gross return) − 1. Taxes, market impact and final liquidation are excluded.</p></div><div><h3>Metrics</h3><p>Returns compound. Annualized return uses 252 trading days per year. Volatility is sample standard deviation × √252. Sharpe uses mean excess daily return divided by daily standard deviation, with an assumed 0% risk-free rate.</p><p>Drawdown measures the fall from an earlier peak, including the starting investment. Filtered windows reset the reference peak. Results with fewer than two daily observations are not displayed.</p><h3>Limitations</h3><p>Historical results do not establish future performance. This is a selected five-ETF universe. Yahoo adjusted closes are accepted as supplied; the audit does not independently verify them. Comparing source dates cannot detect a date missing from every ETF.</p></div></section>
+      <section><h3>Large moves retained for review</h3><div class="table-wrap"><table id="flags"><thead><tr><th>ETF</th><th>Date</th><th>Daily return</th><th>Status</th></tr></thead><tbody></tbody></table></div></section>
+      <section class="downloads"><h3>Research files</h3><a href="../results/findings_brief.pdf"><i data-lucide="file-text"></i>Findings brief (PDF)</a><a href="../results/portfolio_comparison.png"><i data-lucide="image"></i>Portfolio comparison chart</a><a href="../results/portfolio_summary.csv"><i data-lucide="table-2"></i>Portfolio metrics (CSV)</a><a href="../results/data_quality_report.md"><i data-lucide="clipboard-check"></i>Data-quality report</a><a href="../powerbi/Market Risk Research.pbip"><i data-lucide="chart-column"></i>Power BI project</a></section>
+    </section>
+  </main>
+  <footer><span>Historical research · USD · Yahoo Finance adjusted closes</span><span>Python / SQL / Portfolio analysis</span></footer>
+  <noscript>JavaScript is required for the dashboard. The PDF and CSV results remain available in the results folder.</noscript>
+</body>
+</html>

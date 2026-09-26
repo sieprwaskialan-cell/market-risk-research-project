@@ -1,0 +1,24 @@
+Observations =
+IF(HASONEVALUE(Portfolio[Portfolio]), COUNTROWS(Daily))
+
+Total Return =
+IF(HASONEVALUE(Portfolio[Portfolio]) && COUNTROWS(Daily)>0, PRODUCTX(Daily, 1+Daily[NetReturn])-1)
+
+Annualized Return =
+IF([Observations]>1, POWER(1+[Total Return], 252/[Observations])-1)
+
+Volatility =
+IF([Observations]>1, STDEVX.S(Daily, Daily[NetReturn])*SQRT(252))
+
+Sharpe =
+DIVIDE(AVERAGEX(Daily, Daily[NetReturn])*252, [Volatility])
+
+Max Drawdown =
+IF([Observations]>1,
+VAR Points = SELECTCOLUMNS(Daily, "Day", Daily[Date], "Ret", Daily[NetReturn])
+VAR Wealths = ADDCOLUMNS(Points, "W", VAR Today = [Day] RETURN PRODUCTX(FILTER(Points, [Day]<=Today), 1+[Ret]))
+RETURN MINX(Wealths, VAR Today = [Day] VAR Peak = MAX(1, MAXX(FILTER(Wealths, [Day]<=Today), [W])) RETURN [W]/Peak-1))
+
+Growth of 10000 =
+VAR Today = MAX('Date'[Date])
+RETURN CALCULATE(10000*(1+[Total Return]), FILTER(ALLSELECTED('Date'), 'Date'[Date]<=Today))

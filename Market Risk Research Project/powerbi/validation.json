@@ -1,0 +1,25 @@
+{
+  "report_schema_validation": "passed",
+  "files_checked": 16,
+  "model_references_and_visual_bounds": "passed",
+  "desktop_runtime_validation": "not run: Power BI Desktop is not installed",
+  "scope": "JSON schemas, relationship and field references, and non-overlapping page layout. DAX and Power Query execution require Desktop.",
+  "checked_files": [
+    "powerbi\\Market Risk Research.pbip",
+    "powerbi\\MarketRisk.Report\\definition\\pages\\DataEvidence\\page.json",
+    "powerbi\\MarketRisk.Report\\definition\\pages\\DataEvidence\\visuals\\AssetFilter\\visual.json",
+    "powerbi\\MarketRisk.Report\\definition\\pages\\DataEvidence\\visuals\\MonthFilter\\visual.json",
+    "powerbi\\MarketRisk.Report\\definition\\pages\\DataEvidence\\visuals\\MonthlySQL\\visual.json",
+    "powerbi\\MarketRisk.Report\\definition\\pages\\DataEvidence\\visuals\\QualityAudit\\visual.json",
+    "powerbi\\MarketRisk.Report\\definition\\pages\\pages.json",
+    "powerbi\\MarketRisk.Report\\definition\\pages\\PortfolioComparison\\page.json",
+    "powerbi\\MarketRisk.Report\\definition\\pages\\PortfolioComparison\\visuals\\Comparison\\visual.json",
+    "powerbi\\MarketRisk.Report\\definition\\pages\\PortfolioComparison\\visuals\\DateFilter\\visual.json",
+    "powerbi\\MarketRisk.Report\\definition\\pages\\PortfolioComparison\\visuals\\Growth\\visual.json",
+    "powerbi\\MarketRisk.Report\\definition\\pages\\PortfolioComparison\\visuals\\PortfolioFilter\\visual.json",
+    "powerbi\\MarketRisk.Report\\definition\\report.json",
+    "powerbi\\MarketRisk.Report\\definition\\version.json",
+    "powerbi\\MarketRisk.Report\\definition.pbir",
+    "powerbi\\MarketRisk.SemanticModel\\definition.pbism"
+  ]
+}

@@ -1,0 +1,116 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.0.0/schema.json",
+  "name": "QualityAudit",
+  "position": {
+    "x": 805,
+    "y": 20,
+    "width": 455,
+    "height": 350,
+    "z": 0,
+    "tabOrder": 825
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Quality"
+                    }
+                  },
+                  "Property": "Symbol"
+                }
+              },
+              "queryRef": "Quality.Symbol",
+              "nativeQueryRef": "Symbol"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Quality"
+                    }
+                  },
+                  "Property": "Prices"
+                }
+              },
+              "queryRef": "Quality.Prices",
+              "nativeQueryRef": "Prices"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Quality"
+                    }
+                  },
+                  "Property": "Removed"
+                }
+              },
+              "queryRef": "Quality.Removed",
+              "nativeQueryRef": "Removed"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Quality"
+                    }
+                  },
+                  "Property": "Missing"
+                }
+              },
+              "queryRef": "Quality.Missing",
+              "nativeQueryRef": "Missing"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Quality"
+                    }
+                  },
+                  "Property": "LargeMoves"
+                }
+              },
+              "queryRef": "Quality.LargeMoves",
+              "nativeQueryRef": "LargeMoves"
+            }
+          ]
+        }
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Full-sample quality checks | flags retained'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

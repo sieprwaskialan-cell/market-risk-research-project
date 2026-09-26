@@ -1,0 +1,4 @@
+-r requirements.txt
+fastjsonschema==2.22.2
+pypdf
+pypdfium2

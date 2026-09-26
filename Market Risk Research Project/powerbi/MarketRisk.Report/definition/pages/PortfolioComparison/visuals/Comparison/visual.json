@@ -1,0 +1,144 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/1.0.0/schema.json",
+  "name": "Comparison",
+  "position": {
+    "x": 20,
+    "y": 515,
+    "width": 1240,
+    "height": 260,
+    "z": 0,
+    "tabOrder": 535
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Portfolio"
+                    }
+                  },
+                  "Property": "Name"
+                }
+              },
+              "queryRef": "Portfolio.Name",
+              "nativeQueryRef": "Name"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Daily"
+                    }
+                  },
+                  "Property": "Total Return"
+                }
+              },
+              "queryRef": "Daily.Total Return",
+              "nativeQueryRef": "Total Return"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Daily"
+                    }
+                  },
+                  "Property": "Annualized Return"
+                }
+              },
+              "queryRef": "Daily.Annualized Return",
+              "nativeQueryRef": "Annualized Return"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Daily"
+                    }
+                  },
+                  "Property": "Volatility"
+                }
+              },
+              "queryRef": "Daily.Volatility",
+              "nativeQueryRef": "Volatility"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Daily"
+                    }
+                  },
+                  "Property": "Max Drawdown"
+                }
+              },
+              "queryRef": "Daily.Max Drawdown",
+              "nativeQueryRef": "Max Drawdown"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Daily"
+                    }
+                  },
+                  "Property": "Sharpe"
+                }
+              },
+              "queryRef": "Daily.Sharpe",
+              "nativeQueryRef": "Sharpe"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Daily"
+                    }
+                  },
+                  "Property": "Observations"
+                }
+              },
+              "queryRef": "Daily.Observations",
+              "nativeQueryRef": "Observations"
+            }
+          ]
+        }
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Selected-window metrics | 0% assumed risk-free rate'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

@@ -1,0 +1,6 @@
+symbol,raw_rows,invalid_date_rows,out_of_range_rows,missing_or_nonnumeric_price_rows,nonfinite_price_rows,nonpositive_price_rows,identical_duplicates_removed,conflicting_duplicate_dates,rows_removed,clean_rows,missing_observed_sessions,first_valid_date,last_valid_date,large_moves_flagged
+SPY,2190,0,0,0,0,0,0,0,0,2190,0,2018-01-02,2026-09-18,2
+QQQ,2190,0,0,0,0,0,0,0,0,2190,0,2018-01-02,2026-09-18,2
+IWM,2190,0,0,0,0,0,0,0,0,2190,0,2018-01-02,2026-09-18,2
+TLT,2190,0,0,0,0,0,0,0,0,2190,0,2018-01-02,2026-09-18,0
+GLD,2190,0,0,0,0,0,0,0,0,2190,0,2018-01-02,2026-09-18,1

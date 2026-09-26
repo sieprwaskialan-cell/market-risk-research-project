@@ -1,0 +1,6 @@
+symbol,name,asset_class,first_date,last_date,price_observations
+GLD,SPDR Gold Shares,Gold,2018-01-02,2026-09-18,2190
+IWM,iShares Russell 2000 ETF,Equity,2018-01-02,2026-09-18,2190
+QQQ,Invesco QQQ Trust,Equity,2018-01-02,2026-09-18,2190
+SPY,SPDR S&P 500 ETF Trust,Equity,2018-01-02,2026-09-18,2190
+TLT,iShares 20+ Year Treasury Bond ETF,Bonds,2018-01-02,2026-09-18,2190
